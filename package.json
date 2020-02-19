@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/node": "^13.7.2",
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
   },
