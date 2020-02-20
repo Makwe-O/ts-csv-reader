@@ -1,24 +1,18 @@
-import fs from 'fs';
+import { GenericCsvReader } from './GenericCsvParser';
+import { MatchResults } from './utils/enum';
 
-const content = fs
-  .readFileSync('football.csv', {
-    encoding: 'utf-8'
-  })
-  .split('\n')
-  .map(row => row.split(','));
+const reader = new GenericCsvReader('football.csv');
+
+reader.read();
+
+console.log(reader.data[0][0]);
 
 let count = 0;
 
-enum MatchResults{
-  HomeWin = 'H';
-  AwayWin = 'A',
-  Draw = 'D'
-}
-
-for (let match of content) {
+for (let data of reader.data) {
   if (
-    (match[1] === 'Man United' && match[5] === MatchResults.HomeWin) ||
-    (match[2] === 'Man United' && match[5] === MatchResults.AwayWin)
+    (data[1] === 'Man United' && data[5] === MatchResults.HomeWin) ||
+    (data[2] === 'Man United' && data[5] === MatchResults.AwayWin)
   ) {
     count++;
   }
