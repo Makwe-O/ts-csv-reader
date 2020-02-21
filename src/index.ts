@@ -1,15 +1,15 @@
-import { GenericCsvReader } from './GenericCsvParser';
+import { MatchReader } from './MatchReader';
 import { MatchResults } from './utils/enum';
+import { CsvFileReader } from './CsvReader';
 
-const reader = new GenericCsvReader('football.csv');
+const file = new CsvFileReader('football.csv');
+const reader = new MatchReader(file);
 
-reader.read();
-
-console.log(reader.data[0][0]);
+reader.load();
 
 let count = 0;
 
-for (let data of reader.data) {
+for (let data of reader.result) {
   if (
     (data[1] === 'Man United' && data[5] === MatchResults.HomeWin) ||
     (data[2] === 'Man United' && data[5] === MatchResults.AwayWin)
