@@ -1,9 +1,7 @@
-import { CsvFileReader } from './csvReader';
-import { MatchResults } from './utils/enum';
-import { dateStringToDate } from './utils/parser';
-
-// TypeScript type exclusive to specific format of csv rendered reperesented as a tuple
-type MatchData = [Date, string, string, number, number, MatchResults, string];
+import { CsvFileReader } from "./CsvReader";
+import { MatchResults } from "./utils/enum";
+import { dateStringToDate } from "./utils/parser";
+import { MatchData } from "./MatchData";
 
 //Specify type of MatchData as Generic type argument on parent class
 export class GenericCsvReader extends CsvFileReader<MatchData> {

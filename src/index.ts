@@ -1,20 +1,12 @@
-import { GenericCsvReader } from './GenericCsvParser';
-import { MatchResults } from './utils/enum';
+import { GenericCsvReader } from "./GenericCsvParser";
+import { ConsoleReport } from "./reports/ConsoleReport";
+import { WinsAnalysis } from "./analysis/WinsAnalysis";
+import { Summary } from "./Summary";
 
-const reader = new GenericCsvReader('football.csv');
+const reader = new GenericCsvReader("football.csv");
 
 reader.read();
 
-console.log(reader.data[0][0]);
+const summary = new Summary(new WinsAnalysis("Watford"), new ConsoleReport());
 
-let count = 0;
-
-for (let data of reader.data) {
-  if (
-    (data[1] === 'Man United' && data[5] === MatchResults.HomeWin) ||
-    (data[2] === 'Man United' && data[5] === MatchResults.AwayWin)
-  ) {
-    count++;
-  }
-}
-console.log('Manchester wins: ', count);
+summary.buildAndPrintReport(reader.data);
